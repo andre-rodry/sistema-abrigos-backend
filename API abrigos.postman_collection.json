@@ -1,0 +1,215 @@
+{
+  "info": {
+    "_postman_id": "8908219e-db38-4abc-832e-1ff43733fe5b",
+    "name": "API abrigos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53048566",
+    "_collection_link": "https://go.postman.co/collection/53048566-8908219e-db38-4abc-832e-1ff43733fe5b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Listar abrigos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/abrigos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "abrigos"]
+        },
+        "description": "Retorna todos os abrigos cadastrados com capacidade e vagas disponíveis. Não requer autenticação."
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar abrigo por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/abrigos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "abrigos", "1"]
+        },
+        "description": "Retorna os dados de um abrigo específico pelo ID. Não requer autenticação."
+      },
+      "response": []
+    },
+    {
+      "name": "Cadastrar abrigo",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "SEU_TOKEN_AQUI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nome\": \"Ginásio Municipal\",\r\n  \"endereco\": \"Av. Principal, 456 - Centro\",\r\n  \"capacidade_total\": 200,\r\n  \"ocupados_atual\": 0,\r\n  \"contato\": \"(85)98888-1111\",\r\n  \"latitude\": \"-25.43\",\r\n  \"longitude\": \"-49.28\"\r\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/abrigos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "abrigos"]
+        },
+        "description": "Cria um novo abrigo. Requer token de admin."
+      },
+      "response": []
+    },
+    {
+      "name": "Login Admin",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"admin@sistema.com\",\r\n  \"senha\": \"admin123\"\r\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/admin/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "admin", "login"]
+        },
+        "description": "Autentica o admin e retorna um token JWT para uso nas rotas protegidas."
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar abrigo",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "SEU_TOKEN_AQUI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nome\": \"Ginásio Municipal Atualizado\",\r\n  \"endereco\": \"Av. Principal, 456 - Centro\",\r\n  \"capacidade_total\": 250,\r\n  \"ocupados_atual\": 10,\r\n  \"contato\": \"(85)98888-1111\",\r\n  \"latitude\": \"-25.43\",\r\n  \"longitude\": \"-49.28\"\r\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/abrigos/2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "abrigos", "2"]
+        },
+        "description": "Atualiza os dados de um abrigo pelo ID. Requer token de admin."
+      },
+      "response": []
+    },
+    {
+      "name": "Deletar abrigo",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "SEU_TOKEN_AQUI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/abrigos/2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "abrigos", "2"]
+        },
+        "description": "Remove um abrigo pelo ID. Requer token de admin."
+      },
+      "response": []
+    },
+    {
+      "name": "Solicitar resgate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nome_solicitante\": \"João Silva\",\r\n  \"telefone\": \"(85)99999-0000\",\r\n  \"latitude\": \"-25.43\",\r\n  \"longitude\": \"-49.28\",\r\n  \"endereco_descricao\": \"Rua das Flores, 123\",\r\n  \"num_pessoas\": 4,\r\n  \"tem_crianca\": true,\r\n  \"tem_idoso\": false,\r\n  \"tem_deficiente\": false,\r\n  \"observacoes\": \"Água chegou ao telhado\"\r\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/resgates",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "resgates"]
+        },
+        "description": "Registra uma solicitação de resgate. Não requer autenticação."
+      },
+      "response": []
+    },
+    {
+      "name": "Cadastrar voluntário",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nome\": \"Maria Santos\",\r\n  \"email\": \"maria@email.com\",\r\n  \"telefone\": \"(85)98888-2222\",\r\n  \"cidade\": \"Fortaleza\",\r\n  \"disponibilidade\": \"fins de semana\",\r\n  \"habilidades\": \"primeiros socorros\",\r\n  \"senha\": \"senha123\"\r\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/voluntario/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "voluntario", "register"]
+        },
+        "description": "Registra um novo voluntário no sistema. Não requer autenticação."
+      },
+      "response": []
+    },
+    {
+      "name": "Login Voluntário",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"maria@email.com\",\r\n  \"senha\": \"senha123\"\r\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/voluntario/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "voluntario", "login"]
+        },
+        "description": "Autentica o voluntário e retorna um token JWT para uso nas rotas protegidas."
+      },
+      "response": []
+    }
+  ]
+}
